@@ -40,8 +40,6 @@ class HomeController extends Controller {
         header("location:/ProjectAlbum/");
     }
     
-    
-    
 }
 
 ?>
