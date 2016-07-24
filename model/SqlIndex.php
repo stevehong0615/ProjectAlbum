@@ -23,5 +23,9 @@ class SqlIndex{
         return $albumArray;
     }
     
+    function addPhoto(){
+        
+    }
+    
 }
 ?>

@@ -12,13 +12,11 @@
             <article class="span12">
             <br>
             <?php if ($sUserName == $_SESSION['user_name']): ?>
-            <p><a href="upload.php">新增照片</a></p>
+            <p><a href="/ProjectAlbum/Home/addPhoto">新增照片</a></p>
             <?php endif; ?>
             </article>
             <ul class="portfolio clearfix">
-            
               <?php for($i = 0; $i < count($data['id']); $i++){ ?> 
-              
               <li class="box"><a href="/ProjectAlbum/images/<?php echo $data['name'][$i]; ?>" class="magnifier" ><img alt="" src="/ProjectAlbum/images/<?php echo $data['name'][$i]; ?>"></a>
               <br><?php echo $data['comment'][$i]; ?><br>
               <?php if($sUserName != "Guest"){ ?>

@@ -25,19 +25,61 @@ class HomeController extends Controller {
             }
             else
             {
-                header("location:/ProjectAlbum/login");
+                header("location:/ProjectAlbum/Home/login");
             }
         }
         $this->view("login", $result);
+    }
+    
+    function logout(){
+        session_destroy();
+        header("location:/ProjectAlbum/");
+    }
+    
+    function register(){
+        $this->view("register");
+        $account = $_POST['account'];
+        $pw = $_POST['pw'];
+        $pw2 = $_POST['pw2'];
+        $nickname = $_POST['nickname'];
+        
+        if($account != null && $pw != null && $pw2 != null && $nickname != null && $pw == $pw2){
+        $this->model("Guest");
+        $user = new Guest();
+        $addUser = $user->sqlAddUser($account, $pw, $nickname);
+        header("location:/ProjectAlbum/Home/login");
+        }
     }
     
     function contact() {
         $this->view("contact");
     }
     
-    function logout(){
-        session_destroy();
-        header("location:/ProjectAlbum/");
+    function addPhoto(){
+        $this->view("addPhoto");
+    }
+    
+    function secret(){
+        $account = $_SESSION['user_name'];
+        $userInfo = $this->model("Guest");
+        $result = $userInfo->sqlSecretUser($account);
+        $this->view("secret", $result);
+        
+    }
+    
+    function editUser(){
+        $username = $_SESSION['user_name'];
+        //echo $username;
+        $pw = $_POST['pw'];
+        $pw2 = $_POST['pw2'];
+        $nickname = $_POST['nickname'];
+        
+        if($pw != null && $pw2 != null && $nickname != null && $pw == $pw2){
+            $this->model("Guest");
+            $editUserInfo = new Guest();
+            $result = $editUserInfo->editUser($username, $pw, $nickname);
+            header("location:/ProjectAlbum/Home/index");
+        }
     }
     
 }
