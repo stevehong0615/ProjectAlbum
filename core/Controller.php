@@ -14,7 +14,6 @@ class Controller {
         echo '<script src="/ProjectAlbum/js/'.$name.'.js"></script>';
     }
     
-    
     public function view($view, $data = Array()) {
         require_once "views/$view.php";
     }

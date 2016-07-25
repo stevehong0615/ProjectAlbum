@@ -1,5 +1,5 @@
 <?php
- 
+//資料庫連線
 class Connect{
     function dbConnect($cmd){
         

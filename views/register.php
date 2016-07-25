@@ -17,7 +17,6 @@
                 <div class="col"> <a href="/ProjectAlbum/Home/login">回登入頁</a></div>
             </div>
             <input class="enviar" type="submit" name="button" value="確定" />
-        </div>   
         </form>
     </section>   
 </body>

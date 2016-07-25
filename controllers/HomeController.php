@@ -2,6 +2,7 @@
 
 class HomeController extends Controller {
     
+    // 相簿首頁
     function index() {
         $this->model("SqlIndex");
         $indexInfo = new SqlIndex();
@@ -9,6 +10,7 @@ class HomeController extends Controller {
         $this->view("index", $result);
     }
     
+    // 登入
     function login(){
         $account = $_POST['account'];
         $pw = $_POST['pw'];
@@ -31,11 +33,13 @@ class HomeController extends Controller {
         $this->view("login", $result);
     }
     
+    // 登出
     function logout(){
         session_destroy();
         header("location:/ProjectAlbum/");
     }
     
+    // 註冊
     function register(){
         $this->view("register");
         $account = $_POST['account'];
@@ -51,14 +55,12 @@ class HomeController extends Controller {
         }
     }
     
+    // 連絡站長
     function contact() {
         $this->view("contact");
     }
     
-    function addPhoto(){
-        $this->view("addPhoto");
-    }
-    
+    // 會員中心
     function secret(){
         $account = $_SESSION['user_name'];
         $userInfo = $this->model("Guest");
@@ -67,6 +69,7 @@ class HomeController extends Controller {
         
     }
     
+    // 修改會員中心資料
     function editUser(){
         $username = $_SESSION['user_name'];
         //echo $username;

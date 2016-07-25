@@ -1,8 +1,10 @@
 <?php
 
 class SqlIndex{
+    // 搜尋album資料表資料
     function sqlIndex(){
         $cmd = "SELECT * FROM album";
+        // 連線資料庫
         $db = new Connect();
         $result = $db->dbConnect($cmd);
         
@@ -11,7 +13,6 @@ class SqlIndex{
             $nameArray[] = $row['name'];
             $dateArray[] = $row['date'];
             $commentArray[] = $row['comment'];
-            
         }
         
         $albumArray = array('id'=>$idArray,
@@ -22,10 +23,5 @@ class SqlIndex{
         // exit();
         return $albumArray;
     }
-    
-    function addPhoto(){
-        
-    }
-    
 }
 ?>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>臺灣寶島之美</title>
+    <title>臺灣寶島之美</title>
 	<meta charset="utf-8">
 	<?php $this->css('stylelogin');?>
 </head>
@@ -16,7 +16,6 @@
                 <div class="col"> <a href="/ProjectAlbum/Home/index">回相簿</a></div>
             </div>
             <input class="enviar" type="submit" name="button" value="登入" />
-        </div>   
         </form>
     </section>   
 </body>
