@@ -58,7 +58,6 @@ class Image{
         
         // 照片新增到資料夾  
         if(!move_uploaded_file($_FILES["UpPhoto"]["tmp_name"][$i], "images/" . $_FILES["UpPhoto"]["name"][$i])) die("上傳失敗！");
-              
     }
 }
 ?>

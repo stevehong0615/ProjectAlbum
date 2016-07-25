@@ -1,23 +1,20 @@
 <?php
-    class imageController extends Controller{
+    class ImageController extends Controller{
         
         // 判斷為delete 或 edit
         function conImage(){
             
             $delete = $_POST['delete'];
             $edit = $_POST['edit'];
-            //print_r($delete);
             $del = $this->model("Image");
             
-            if(isset($delete)){
+            if($delete != null){
                 $del -> deleteImage($delete);
-                header("location:/ProjectAlbum/");
-                exit();
+                header("location:/ProjectAlbum/Home/index");
             }
-            if(isset($edit)){
+            if($edit != null){
                 $del -> editImage($edit);
                 header("location:/ProjectAlbum/Image/editPhoto/$edit");
-                
             }
         }
         
@@ -53,10 +50,8 @@
                     $add_Photo = new Image();
                     $addPhoto = $add_Photo->addNewPhoto($i);
                 }
-                header("location:/ProjectAlbum/Home/index");
-                
+            header("location:/ProjectAlbum/Home/index");
             }
         }
-        
     }
 ?>
