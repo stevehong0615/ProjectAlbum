@@ -10,7 +10,8 @@ class App {
         $controllerName = "HomeController";
         
         if (!file_exists("controllers/$controllerName.php"))
-            return;
+            header("location:/ProjectAlbum/");
+            
         require_once "controllers/$controllerName.php";
         $controller = new $controllerName;
         $methodName = isset($url[1]) ? $url[1] : "index";

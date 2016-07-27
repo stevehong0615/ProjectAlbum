@@ -5,7 +5,7 @@ class Image{
     function deleteImage($delete){
         
         // 刪除資料夾內的檔案
-        $cmd = "SELECT name FROM album WHERE id =".$delete;
+        $cmd = "SELECT name FROM album WHERE id ='".$delete."'";
         $db = new Connect();
         $result = $db->dbConnect($cmd);
         while($row = mysqli_fetch_assoc($result))
@@ -16,14 +16,14 @@ class Image{
         unlink('images/'.$name.'');
         
         // 刪除資料表內的資料
-        $del = "DELETE FROM album WHERE id =".$delete;
+        $del = "DELETE FROM album WHERE id ='$delete'";
         $deldb = new Connect();
         $delresult = $deldb->dbConnect($del);
     }
     
     // 照片編輯頁面的資料
     function editImage($edit){
-        $cmd = "SELECT * FROM album WHERE id =".$edit;
+        $cmd = "SELECT * FROM album WHERE id ='$edit'";
         $db = new Connect();
         $result = $db->dbConnect($cmd);
         while($row = mysqli_fetch_assoc($result)){
@@ -41,7 +41,7 @@ class Image{
     
     // 照片編輯傳回資料表
     function editImageFinish($id, $comment){
-        $edit = "UPDATE album SET comment = '".$comment."' WHERE id = '".$id."'";
+        $edit = "UPDATE album SET comment = '$comment' WHERE id = '$id'";
         $deldb = new Connect();
         $delresult = $deldb->dbConnect($edit);
     }
