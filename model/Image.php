@@ -5,7 +5,7 @@ class Image{
     function deleteImage($delete){
         
         // 刪除資料夾內的檔案
-        $cmd = "SELECT name FROM album WHERE id ='".$delete."'";
+        $cmd = "SELECT `name` FROM `album` WHERE `id` ='$delete'";
         $db = new Connect();
         $result = $db->dbConnect($cmd);
         while($row = mysqli_fetch_assoc($result))
@@ -23,7 +23,7 @@ class Image{
     
     // 照片編輯頁面的資料
     function editImage($edit){
-        $cmd = "SELECT * FROM album WHERE id ='$edit'";
+        $cmd = "SELECT * FROM `album` WHERE `id` ='$edit'";
         $db = new Connect();
         $result = $db->dbConnect($cmd);
         while($row = mysqli_fetch_assoc($result)){
@@ -41,23 +41,23 @@ class Image{
     
     // 照片編輯傳回資料表
     function editImageFinish($id, $comment){
-        $edit = "UPDATE album SET comment = '$comment' WHERE id = '$id'";
+        $edit = "UPDATE `album` SET `comment` = '$comment' WHERE `id` = '$id'";
         $deldb = new Connect();
         $delresult = $deldb->dbConnect($edit);
     }
     
     // 新增照片
     function addNewPhoto($i){
-        $query_insert = "INSERT INTO album (name, date, comment) VALUES (";
-        $query_insert .= "'". $_FILES["UpPhoto"]["name"][$i]."',";
-        $query_insert .= "NOW(),";	  
-        $query_insert .= "'".$_POST["Photo_Comment"][$i]."')";		  
+        $Photo_Name = $_FILES['UpPhoto']['name'][$i];
+        $date = "NOW()";
+        $Photo_Comment = $_POST['Photo_Comment'][$i];
+        $query_insert = "INSERT INTO `album` (`name`, `date`, `comment`) VALUES ('$Photo_Name', '$date', '$Photo_Comment')";
         
         $db = new Connect();
         $result = $db->dbConnect($query_insert);
         
         // 照片新增到資料夾  
-        if(!move_uploaded_file($_FILES["UpPhoto"]["tmp_name"][$i], "images/" . $_FILES["UpPhoto"]["name"][$i])) die("上傳失敗！");
+        if(!move_uploaded_file($_FILES["UpPhoto"]["tmp_name"][$i], "images/" . $Photo_Name)) die("上傳失敗！");
     }
 }
 ?>

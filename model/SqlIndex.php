@@ -3,7 +3,7 @@
 class SqlIndex{
     // 搜尋album資料表資料
     function sqlIndex(){
-        $cmd = "SELECT * FROM album";
+        $cmd = "SELECT * FROM `album`";
         // 連線資料庫
         $db = new Connect();
         $result = $db->dbConnect($cmd);
