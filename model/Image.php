@@ -1,11 +1,11 @@
 <?php 
 class Image{
-    
+    var $conn;
     // 刪除照片
     function deleteImage($delete){
         
         // 刪除資料夾內的檔案
-        $cmd = "SELECT `name` FROM `album` WHERE `id` ='$delete'";
+        $cmd = "SELECT `name` FROM `album` WHERE `id` = '$delete'";
         $db = new Connect();
         $result = $db->dbConnect($cmd);
         while($row = mysqli_fetch_assoc($result))
@@ -18,6 +18,7 @@ class Image{
         // 刪除資料表內的資料
         $del = "DELETE FROM album WHERE id ='$delete'";
         $deldb = new Connect();
+        $this->conn = $deldb;
         $delresult = $deldb->dbConnect($del);
     }
     

@@ -4,10 +4,11 @@ class HomeController extends Controller {
     
     // 相簿首頁
     function index() {
-        $this->model("SqlIndex");
-        $indexInfo = new SqlIndex();
-        $result = $indexInfo->sqlIndex();
-        $this->view("index", $result);
+        $sqlIndex = $this->model("SqlIndex");
+        $data = $sqlIndex->indexSelect();
+        
+        $this->view("index", $data);
+        
     }
     
     // 登入

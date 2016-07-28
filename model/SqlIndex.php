@@ -1,27 +1,16 @@
 <?php
 
-class SqlIndex{
+class SqlIndex extends Connect{
     // 搜尋album資料表資料
-    function sqlIndex(){
-        $cmd = "SELECT * FROM `album`";
-        // 連線資料庫
-        $db = new Connect();
-        $result = $db->dbConnect($cmd);
+    function indexSelect(){
         
-        while($row = mysqli_fetch_assoc($result)){
-            $idArray[] = $row['id'];
-            $nameArray[] = $row['name'];
-            $dateArray[] = $row['date'];
-            $commentArray[] = $row['comment'];
-        }
-        
-        $albumArray = array('id'=>$idArray,
-                            'name'=>$nameArray,
-                            'date'=>$dateArray,
-                            'comment'=>$commentArray);
-        // var_dump($albumArray);
-        // exit();
-        return $albumArray;
+        // $connect = new Connect();
+        $selectSql = $this->db->query("SELECT * FROM album");
+        $data = $selectSql->fetchAll(PDO::FETCH_ASSOC);
+
+        return $data;
     }
 }
 ?>
+
+

@@ -1,23 +1,19 @@
 <?php
 //資料庫連線
 class Connect{
-    function dbConnect($cmd){
-        
-    $dbServer = "localhost";
-    $dbUser = "root";
-    $dbPass = "";
-    $dbName = "project_album";
+    public $db;
+    public function __construct(){
     
-    $conn = @mysqli_connect($dbServer, $dbUser, $dbPass, $dbName);
-    
-    if (mysqli_connect_errno($conn))
-        die("無法連線資料庫伺服器");
-        
-    mysqli_set_charset($conn, "utf8");
-    $result = mysqli_query($conn, $cmd);
-    return $result;
+        $this->db = new PDO('mysql:host=localhost; dbname=project_album; charset=utf8',
+                            'root',
+                            '',
+                            array(
+                                PDO::ATTR_EMULATE_PREPARES=>false,
+                                PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION
+                            )
+                    );
     }
-    
+
 }
-    
 ?>
+

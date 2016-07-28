@@ -14,6 +14,7 @@ class App {
             
         require_once "controllers/$controllerName.php";
         $controller = new $controllerName;
+        
         $methodName = isset($url[1]) ? $url[1] : "index";
         if (!method_exists($controller, $methodName))
             return;
