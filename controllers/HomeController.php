@@ -20,12 +20,10 @@ class HomeController extends Controller {
             $result = $userInfo->sqlUser($account,$pw);
         
             if($result[0]['user_name'] != null){
-                echo "<script>alert('登入成功');</script>";
-                header("Refresh:0;url=index");
+                header("location:/ProjectAlbum/");
              }
             else{
-                echo "<script>alert('登入失敗');</script>";
-                header("Refresh:0;url=login");
+                header("location:/ProjectAlbum/Home/login");
             }
         }
     }
@@ -48,12 +46,10 @@ class HomeController extends Controller {
             if($account != null && $pw != null && $pw2 != null && $nickname != null && $pw == $pw2){
                 $user = $this->model("Guest");
                 $addUser = $user->sqlAddUser($account, $pw, $nickname);
-                echo "<script>alert('註冊成功');</script>";
-                //header("location:/ProjectAlbum/Home/login");
-                header("Refresh:0;url=login");
+                header("location:/ProjectAlbum/Home/login");
             }
             else{
-                echo "<script>alert('註冊失敗');</script>";
+                header("location:/ProjectAlbum/Home/register");
             }
         }
     }
@@ -83,13 +79,10 @@ class HomeController extends Controller {
         if($pw != null && $pw2 != null && $nickname != null && $pw == $pw2){
             $editUserInfo = $this->model("Guest");
             $result = $editUserInfo->editUser($username, $pw, $nickname);
-            echo "<script>alert('編輯成功');</script>";
-            header("Refresh:0;url=index");
-            //header("location:/ProjectAlbum/Home/index");
+            header("location:/ProjectAlbum/Home/index");
         }
         else{
-            echo "<script>alert('編輯失敗');</script>";
-            header("Refresh:0;url=index");
+            header("location:/ProjectAlbum/");
         }
     }
     
