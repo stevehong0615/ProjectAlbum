@@ -3,14 +3,13 @@
         
         // 判斷為delete 或 edit
         function conImage(){
-            
             $delete = $_POST['delete'];
             $edit = $_POST['edit'];
             $del = $this->model("Image");
             
             if($delete != null){
                 $del -> deleteImage($delete);
-                header("location:/ProjectAlbum/Home/index");
+                header("location:/ProjectAlbum/");
             }
             if($edit != null){
                 $del -> editImage($edit);
@@ -20,8 +19,7 @@
         
         // 到Image的function editImage取得資料
         function editPhoto($edit){
-            $this->model("Image");
-            $albumInfo = new Image();
+            $albumInfo = $this->model("Image");
             $result = $albumInfo->editImage($edit);
             $this->view("editPhoto", $result);
         }
@@ -30,10 +28,8 @@
         function editImage(){
             $id = $_POST['id'];
             $comment = $_POST['comment'];
-            $this->model("Image");
-            $albumInfo = new Image();
+            $albumInfo = $this->model("Image");
             $result = $albumInfo->editImageFinish($id, $comment);
-            $this->view("index", $result);
             header("location:/ProjectAlbum/Home/index");
         }
         
@@ -46,8 +42,7 @@
         function upload(){
             for ($i=0; $i<count($_FILES["UpPhoto"]); $i++) {
                 if ($_FILES["UpPhoto"]["tmp_name"][$i] != "") {
-                    $this->model("Image");
-                    $add_Photo = new Image();
+                    $add_Photo = $this->model("Image");
                     $addPhoto = $add_Photo->addNewPhoto($i);
                 }
             header("location:/ProjectAlbum/Home/index");

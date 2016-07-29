@@ -12,12 +12,12 @@
           <br>
           <h3>編輯照片</h3>  
         </article>
-        <?php for($i = 0; $i < count($data['id']); $i++){ ?> 
-          <img alt="" src="/ProjectAlbum/images/<?php echo $data['name'][$i]; ?>"><br>
+        <?php foreach($data as $key => $value): ?> 
+          <img alt="" src="/ProjectAlbum/images/<?php echo $value['name']; ?>"><br>
           <form name="form" method="post" action="/ProjectAlbum/Image/editImage">
-            <p>說明：<input type = "text" name = "comment" value = "<?php echo $data['comment'][$i]; ?>"></p><br>
-            <input type = "hidden" name = "id" value = "<?php echo $data['id'][$i]; ?>">
-        <?php } ?>
+            <p>說明：<input type = "text" name = "comment" value = "<?php echo $value['comment']; ?>"></p><br>
+            <input type = "hidden" name = "id" value = "<?php echo $value['id']; ?>">
+        <?php endforeach; ?>
             <input type="submit" name="button" value="確定" />
           </form>
       </div>

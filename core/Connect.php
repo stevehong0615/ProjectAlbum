@@ -7,13 +7,11 @@ class Connect{
         $this->db = new PDO('mysql:host=localhost; dbname=project_album; charset=utf8',
                             'root',
                             '',
-                            array(
-                                PDO::ATTR_EMULATE_PREPARES=>false,
-                                PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION
+                            array(PDO::ATTR_EMULATE_PREPARES=>false,
+                                  PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION
                             )
                     );
     }
-
 }
 ?>
 

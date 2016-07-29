@@ -18,12 +18,11 @@
               <?php foreach($data as $key=>$value): ?>
                 <li class="box"><a href="/ProjectAlbum/images/<?php echo $value['name']; ?>" class="magnifier" ><img alt="" src="/ProjectAlbum/images/<?php echo $value['name']; ?>"></a>
                 <br><?php echo $value['comment']; ?><br>
-                <?php if($sUserName != "Guest"){ ?>
+                <?php if($sUserName != "Guest"): ?>
                   <?php echo "<button type='button' id='editbtn'  class = 'btn' onClick = 'SubmitFormEdit(" . $value['id'] . ")' />編輯"; ?>
                   <?php echo "<button type='button' id='deletebtn' class = 'btn' onClick = 'SubmitForm(" . $value['id'] . ")' />刪除"; ?>
-                <?php } ?>
+                <?php endif; ?>
                 </li> 
-              <?php //} ?>
               <?php endforeach; ?>
               <form action = "/ProjectAlbum/Image/conImage" method = "post">
                 <input name = "edit" type = "hidden" id = "edit"></input>

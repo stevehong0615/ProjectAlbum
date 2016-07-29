@@ -1,61 +1,36 @@
 <?php
 
-class Guest{
-    function sqlUser($account){
+class Guest extends Connect{
+    
+    function sqlUser($account,$pw){
         // 搜尋users_table資料表定使用者名稱的資料
-        $user = "SELECT * FROM `users_table` where `user_name` = '$account'";
-        // 連線資料庫
-        $db = new Connect();
-        $result = $db->dbConnect($user);
+        $user = $this->db->query("SELECT `user_name` FROM `users_table` where `user_name` = '".$account."'AND password='".$pw."'");
+        $result = $user->fetchAll(PDO::FETCH_ASSOC);
         
-        while($row = mysqli_fetch_assoc($result)){
-            
-            $idArray[] = $row['id'];
-            $user_nameArray[] = $row['user_name'];
-            $passwordArray[] = $row['password'];
-            $nicknameArray[] = $row['nickname'];
-            
+        if($result[0]['user_name'] != null){
+            $_SESSION['user_name'] = $result[0]['user_name'];
         }
-        $userArray = array('id'=>$idArray,
-                            'user_name'=>$user_nameArray,
-                            'password'=>$passwordArray,
-                            'nickname'=>$nicknameArray);
-        // var_dump($albumArray);
-        // exit();
-        return $userArray;
+        return $result;
+        
     }
     
+    // 新增user
     function sqlAddUser($account, $pw, $nickname){
-        //新增user
-        $addUserSql = "INSERT INTO `users_table` (`user_name`, `password`, `nickname`) VALUES ('$account', '$pw', '$nickname')";
-        $db = new Connect();
-        $result = $db->dbConnect($addUserSql);
+        $this->db->query("INSERT INTO `users_table` (`user_name`, `password`, `nickname`) VALUES ('$account', '$pw', '$nickname')");
+        return;
     }
     
+    // 抓取SESSION名稱的資料
     function sqlSecretUser($account){
-        $user = "SELECT * FROM `users_table` where `user_name` = '$account'";
-        $db = new Connect();
-        $result = $db->dbConnect($user);
-        
-        while($row = mysqli_fetch_assoc($result)){
-            $idArray[] = $row['id'];
-            $user_nameArray[] = $row['user_name'];
-            $passwordArray[] = $row['password'];
-            $nicknameArray[] = $row['nickname'];
-            
-        }
-        $userArray = array('id'=>$idArray,
-                            'user_name'=>$user_nameArray,
-                            'password'=>$passwordArray,
-                            'nickname'=>$nicknameArray);
-        return $userArray;
+        $userAccount = $this->db->query("SELECT * FROM `users_table` where `user_name` = '$account'");
+        $result = $userAccount->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
     }
     
+    // 編輯會員資料
     function editUser($username, $pw, $nickname){
-        //編輯user的資料
-        $editUser = "UPDATE `users_table` SET `password` = '$pw', `nickname` = '$nickname' where `user_name` = '$username'";
-        $db = new Connect();
-        $result = $db->dbConnect($editUser);
+        $this->db->query("UPDATE `users_table` SET `password` = '$pw', `nickname` = '$nickname' where `user_name` = '$username'");
+        return;
     }
     
 }
