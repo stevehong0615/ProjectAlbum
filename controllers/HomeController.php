@@ -82,8 +82,12 @@ class HomeController extends Controller {
             header("location:/ProjectAlbum/Home/index");
         }
         else{
-            header("location:/ProjectAlbum/");
+            header("location:/ProjectAlbum/Home/error");
         }
+    }
+    
+    function error(){
+        $this->view("error");
     }
     
 }
