@@ -40,7 +40,7 @@
         
         // 上傳照片
         function upload(){
-            for ($i=0; $i<count($_FILES["UpPhoto"]); $i++) {
+            for ($i=0; $i < count($_FILES["UpPhoto"]); $i++) {
                 if ($_FILES["UpPhoto"]["tmp_name"][$i] != "") {
                     $add_Photo = $this->model("Image");
                     $addPhoto = $add_Photo->addNewPhoto($i);

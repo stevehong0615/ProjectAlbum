@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<?php require('layout.php'); ?>
+	<?php require_once 'layout.php'; ?>
 </head>
 <body>
   <div class="bg-content"> 

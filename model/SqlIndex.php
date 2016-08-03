@@ -5,7 +5,7 @@ class SqlIndex extends Connect{
     function indexSelect(){
         
         // $connect = new Connect();
-        $selectSql = $this->db->query("SELECT * FROM album");
+        $selectSql = $this->db->query("SELECT * FROM `album`");
         $data = $selectSql->fetchAll(PDO::FETCH_ASSOC);
         return $data;
     }

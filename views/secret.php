@@ -8,6 +8,7 @@
 <body>
     <section class="register">
         <div class="titulo">會員中心</div>
+        <p><a href="/ProjectAlbum/">回首頁</a></p>
             <form name="form" method="post" action="/ProjectAlbum/Home/editUser">
                 <?php foreach($data as $key => $value): ?>
                     <p>帳號：<?php echo $value['user_name']; ?></p><br>

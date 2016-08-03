@@ -6,13 +6,13 @@ class HomeController extends Controller {
     function index() {
         $sqlIndex = $this->model("SqlIndex");
         $data = $sqlIndex->indexSelect();
-        
         $this->view("index", $data);
     }
     
     // 登入
     function login(){
         $this->view("login", $data);
+        
         if(isset($_POST['button'])){
             $account = $_POST['account'];
             $pw = $_POST['pw'];
@@ -30,7 +30,8 @@ class HomeController extends Controller {
     
     // 登出
     function logout(){
-        session_destroy();
+        $logoutUser = $this->model("Guest");
+        $doLogout = $logoutUser->deleteSession();
         header("location:/ProjectAlbum/");
     }
     
@@ -61,22 +62,18 @@ class HomeController extends Controller {
     
     // 會員中心
     function secret(){
-        $account = $_SESSION['user_name'];
         $userInfo = $this->model("Guest");
-        $result = $userInfo->sqlSecretUser($account);
+        $result = $userInfo->sqlSecretUser();
         $this->view("secret", $result);
-        
     }
     
     // 修改會員中心資料
     function editUser(){
-        $username = $_SESSION['user_name'];
-        //echo $username;
         $pw = $_POST['pw'];
         $pw2 = $_POST['pw2'];
         $nickname = $_POST['nickname'];
         
-        if($pw != null && $pw2 != null && $nickname != null && $pw == $pw2){
+        if($pw != null && $pw2 != null && $pw == $pw2){
             $editUserInfo = $this->model("Guest");
             $result = $editUserInfo->editUser($username, $pw, $nickname);
             header("location:/ProjectAlbum/Home/index");
