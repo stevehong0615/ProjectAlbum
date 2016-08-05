@@ -19,7 +19,11 @@ class Guest extends Connect{
     
     // 新增user
     function sqlAddUser($account, $pw, $nickname){
-        $this->db->query("INSERT INTO `users_table` (`user_name`, `password`, `nickname`) VALUES ('$account', '$pw', '$nickname')");
+        $addUser = $this->db->prepare("INSERT INTO `users_table` (`user_name`, `password`, `nickname`) VALUES (:user_name, :password, :nickname)");
+        $addUser->bindParam(':user_name', $account);
+        $addUser->bindParam(':password', $pw);
+        $addUser->bindParam(':nickname', $nickname);
+        $addUser->execute();
         return true;
     }
     
@@ -34,7 +38,10 @@ class Guest extends Connect{
     // 編輯會員資料
     function editUser($username, $pw, $nickname){
         $username = $_SESSION['user_name'];
-        $this->db->query("UPDATE `users_table` SET `password` = '$pw', `nickname` = '$nickname' WHERE `user_name` = '$username'");
+        $editUserData = $this->db->prepare("UPDATE `users_table` SET `password` = :password, `nickname` = :nickname WHERE `user_name` = '$username'");
+        $editUserData->bindParam(':password', $pw);
+        $editUserData->bindParam(':nickname', $nickname);
+        $editUserData->execute();
         return true;
     }
     
